@@ -4,13 +4,13 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>TechShop</title>
-    </head>
+    </head> 
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">   
+                    <div class="col-md-3" sec:authorize='hasRole("ROLE_ADMIN")'>   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -39,14 +39,17 @@
                         <form th:action="@{/categoria/guardar}" th:object="${categoria}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
+                                
                                 <div class="mb-3">
                                     <label for="descripcion">[[#{categoria.descripcion}]]</label>
                                     <input type="text" class="form-control" name="descripcion" required="true"/>
                                 </div>
+                                
                                 <div class="mb-3">
                                     <label for="activo">[[#{categoria.activo}]]</label>
                                     <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
                                 </div>
+                                
                                 <div class="mb-3">
                                     <label for="imagen">[[#{categoria.rutaImagen}]]</label>
                                     <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
@@ -85,10 +88,10 @@
                                             <td>[[${categoria.descripcion}]]</td>
                                             <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
                                             <td><a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
-                                                   class="btn btn-danger">
+                                                   class="btn btn-danger" sec:authorize='hasRole("ROLE_ADMIN")'>
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
                                                 <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
-                                                   class="btn btn-success">
+                                                   class="btn btn-success" sec:authorize='hasRole("ROLE_ADMIN")'>
                                                     <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
                                     </tbody>
                                 </table>

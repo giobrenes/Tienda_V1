@@ -3,7 +3,7 @@ package com.tienda.controller;
 import com.tienda.domain.Categoria;
 import lombok.extern.slf4j.Slf4j;
 import com.tienda.service.CategoriaService;
-import com.tienda.service.impl.FirebaseStorageServiceImpl;
+import com.tienda.service.FirebaseStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +35,7 @@ public class CategoriaController {
     }
 
     @Autowired
-    private FirebaseStorageServiceImpl firebaseStorageService;
+    private FirebaseStorageService firebaseStorageService;
     
     @PostMapping("/guardar")
     public String categoriaGuardar(Categoria categoria,
