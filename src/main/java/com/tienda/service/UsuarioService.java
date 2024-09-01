@@ -1,4 +1,3 @@
-
 package com.tienda.service;
 
 import com.tienda.domain.Usuario;
@@ -31,7 +30,6 @@ public interface UsuarioService {
     //se elimina el usuario que tiene el id pasado por parametro
     public void delete(Usuario usuario);
 
-    public void save(Usuario usuario);
-     
+    
     
 }
